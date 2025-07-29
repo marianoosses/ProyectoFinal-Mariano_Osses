@@ -1,9 +1,15 @@
-# Proyecto Django
+# Proyecto Final
 
-Este proyecto esta desarollado en django.
+Página Web destinada a usuarios que quieran compartir opiniones sobre películas y series.
 
-crear entorno virtual:
+El usuario podrá realizar las siguientes acciones:
 
-python manage.py runserver
+- Login
+- Crear Usuario
+- Cerrar sesión
+- Agregar películas
+- Agregar series
+- Calificar películas
+- Calificar series
 
-Link a mi video: 
+Link a mi video: https://drive.google.com/drive/folders/14P_vgZLmfT2QA4WFsmGEWfpmUrH3qYeU
