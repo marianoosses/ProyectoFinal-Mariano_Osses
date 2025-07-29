@@ -1,0 +1,19 @@
+{% extends "padre.html" %}
+
+{% block title %} Agregar Serie {% endblock %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <h3>Datos de la Serie</h3>
+  {{ form_serie.as_p }}
+
+  <h3>Calificación</h3>
+  {{ form_calificacion.as_p }}
+
+  <button type="submit">Guardar</button>
+</form>
+
+{% endblock %}

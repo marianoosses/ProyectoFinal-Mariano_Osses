@@ -1,0 +1,28 @@
+{% extends "padre.html" %}
+
+{% block title %} Series {% endblock %}
+
+{% block content %}
+
+<h2>Buscar Pelicula</h2>
+
+<form method="GET" action="{% url 'buscar-peliculas' %}">
+    <input type="text" name="titulo" placeholder="Buscar pelicula..." value="{{ titulo }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<h2>Pelicula: </h2>
+
+<ul>
+  {% for pelicula in peliculas %}
+    <li>
+      <a href="{% url 'detalle_pelicula' pelicula.pk %}">{{ pelicula.titulo }}</a>
+    {% empty %}
+        <li>No hay peliculas disponibles.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'agregar_pelicula' %}">Crear Pelicula</a>
+
+
+{% endblock %}

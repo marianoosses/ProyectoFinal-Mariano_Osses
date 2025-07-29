@@ -1,0 +1,38 @@
+{% extends "padre.html" %}
+
+{% block title %} Agregar Pelicula {% endblock %}
+
+{% block content %}
+
+<!-- detalle_serie.html -->
+
+<h1>{{ pelicula.titulo }}</h1>
+
+<!-- Mostrar imagen si existe -->
+{% if pelicula.imagen %}
+  <img src="{{ pelicula.imagen.url }}" alt="{{ pelicula.titulo }}" style="max-width: 300px; height: auto;">
+{% else %}
+  <p>No hay imagen disponible.</p>
+{% endif %}
+
+<p>{{ pelicula.descripcion }}</p>
+<p><strong>Fecha de estreno:</strong> {{ pelicula.fecha_estreno|date:"d M Y" }}</p>
+
+<hr>
+
+<h2>Calificaciones de la Pelicula</h2>
+
+{% if calificaciones %}
+  <ul>
+    {% for calificacion in calificaciones %}
+      <li>
+        <strong>Puntaje:</strong> {{ calificacion.puntaje }} / 5<br>
+        <strong>Comentario:</strong> {{ calificacion.comentario|linebreaksbr }}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No hay calificaciones aún para esta pelicula.</p>
+{% endif %}
+
+{% endblock %}

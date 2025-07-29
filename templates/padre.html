@@ -1,0 +1,179 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Clean Blog - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        {% comment %} <link rel="stylesheet" href="{% static 'css/styles.css' %}">  {% endcomment %}
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                   {% if user.avatar.imagen %}
+                        <img style="width: 100px; heigth: 100px" src="{{user.avatar.imagen.url}}" alt="">
+                    {% endif %}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'inicio' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'lista_peliculas' %}">Películas</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'lista_series' %}">Series</a></li>
+
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <form action="{% url "logout" %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Logout</button>
+                                </form>
+                            </li>
+                      
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login' %}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'register' %}">Registro</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Tu Mundo de Pelis y Series</h1>
+                            <span class="subheading">Hola {{user.username}}! Bienvenido!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header> 
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {% block content %}
+                    
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2023</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %} Inicio - Mi Sitio Web {% endblock %}</title>
+
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif; background: #f2f2f2; color: #333;">
+
+ {% block header %}
+  <!-- Encabezado -->
+  <header style="background-color: #4CAF50; padding: 20px; text-align: center; color: white;">
+    <h1 style="margin: 0;">Hola Mundo</h1>
+    <p style="margin: 5px 0;">Tu lugar para aprender y descubrir</p>
+  </header>
+{% endblock %}
+  <!-- Contenido principal -->
+  <main style="padding: 40px; text-align: center;">
+    {% block content %}
+    <h2 style="color: #4CAF50;">¿Qué ofrecemos?</h2>
+    <p style="max-width: 600px; margin: 0 auto 30px;">
+      En nuestro sitio encontrarás recursos educativos, noticias de tecnología y herramientas útiles para tu día a día digital.
+    </p>
+    {% endblock %}
+    <a href="#servicios" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
+      Ver más
+    </a>
+  </main>
+
+
+
+  <!-- Sección de servicios -->
+  <section id="servicios" style="background: white; padding: 40px 20px;">
+    <h3 style="text-align: center; color: #333;">Nuestros Servicios</h3>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+      <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; width: 250px;">
+        <h4 style="margin-top: 0;">Tutoriales</h4>
+        <p>Guías paso a paso para aprender nuevas habilidades.</p>
+      </div>
+      <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; width: 250px;">
+        <h4 style="margin-top: 0;">Noticias</h4>
+        <p>Últimas novedades sobre ciencia y tecnología.</p>
+      </div>
+      <div style="background: #fff3e0; padding: 20px; border-radius: 10px; width: 250px;">
+        <h4 style="margin-top: 0;">Herramientas</h4>
+        <p>Utilidades online que te facilitarán la vida.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie de página -->
+  <footer style="background-color: #333; color: white; text-align: center; padding: 15px; margin-top: 40px;">
+    <p style="margin: 0;">&copy; 2025 Mi Sitio Web. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>  {% endcomment %}
