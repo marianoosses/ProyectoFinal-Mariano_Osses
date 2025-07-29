@@ -71,7 +71,8 @@ def buscar_peliculas(request):
 # SERIES
 
 def lista_series(request):
-    series = Serie.objects.all()
+    titulo = request.GET.get("titulo", "")
+    series = Serie.objects.filter(titulo__icontains=titulo) if titulo else Serie.objects.all()
     return render(request, 'mi_primer_app/series.html', {'series': series})
 
 def detalle_serie(request, pk):
